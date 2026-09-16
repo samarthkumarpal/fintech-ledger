@@ -1,0 +1,18 @@
+databases:
+  - name: ledger-postgres
+    databaseName: ledger_db
+    user: postgres
+    plan: free
+
+services:
+  - type: web
+    name: fintech-ledger-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ledger-postgres
+          property: connectionString
