@@ -1,7 +1,7 @@
 databases:
   - name: ledger-postgres
     databaseName: ledger_db
-    user: postgres
+    user: ledger_user
     plan: free
 
 services:
